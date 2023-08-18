@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import db from './firebase';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './components/login';
+import Signup from './components/Register';
+import ViewNews from './components/ViewNews';
+import HomeMain from './components/HomeMain';
+import Wishlist from './components/Wishlist';
+
+
+
 
 function App() {
+  const [data, setData] = useState([]);
+  const [documents, setDocuments] = useState([]);
+  
+  useEffect(()=>{
+console.log(documents);
+  },[documents])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Routes>
+      <Route path='/' element={<Login/>}/>
+      <Route path='/home' element={<HomeMain/>}/>
+      <Route path='/viewnews' element={<ViewNews/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/wishlist' element={<Wishlist/>}/>
+      </Routes>
+      </BrowserRouter>
+     
     </div>
   );
 }

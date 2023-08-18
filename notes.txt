@@ -1,0 +1,87 @@
+useEffect(() => {
+    // Access Firestore collection
+    
+
+  const handleFetch = async () => {
+    try {
+      // Access Firestore collection
+     
+
+      
+      // const colRef = collection(db, "wishlist");
+      // Fetch documents from Firestore
+      // const querySnapshot = await getDocs(colRef);
+      // const fetchedDocuments = [];
+      // querySnapshot.forEach((doc) => {
+      //   fetchedDocuments.push({ id: doc.id, ...doc.data() });
+      // });
+
+
+
+      // add document
+      // const addSnapshot = await addDoc(colRef,{
+      //   first: "Ada",
+      //   last: "Lovelace",
+      //   born: 1815
+      // })
+      // console.log(addSnapshot.id);
+
+
+      //find data with mailid
+    //   const colRef = collection(db, "users");
+    //   const emailToFind = "s.kishore123.64@gmail.com";
+    // const q = query(colRef, where ("email", "==", emailToFind));
+    // const getSnapshotId = await getDocs(q);
+
+    // if (!getSnapshotId.empty) {
+    //   getSnapshotId.forEach((doc) => {
+    //     console.log(`${JSON.stringify(doc.data())}`);
+    //   });
+    // } else {
+    //  
+    //   console.log("No documents found with the specified email.");
+    // }
+      
+      // console.log(fetchedDocuments);
+      // setDocuments(fetchedDocuments);
+
+
+
+      // updatewishlist------------------
+       const collectionRef = collection(db, "users");
+       const email = "s.kishore123.64@gmail.com";
+       const itemToAdd = "hellooo"
+    // Create a query with a condition to find the document
+    const q = query(collectionRef, where("email", "==", email));
+
+    // Fetch documents from Firestore based on the query
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // The query found matching documents
+      querySnapshot.forEach(async (docSnapshot) => {
+        const docId = docSnapshot.id;
+        
+        // Reference the specific document to update
+        const documentRef = doc(db, "users", docId);
+
+        // Update the wishlist array
+        await updateDoc(documentRef, {
+          wishlist: [...docSnapshot.data().wishlist, itemToAdd]
+        });
+
+        console.log("Wishlist updated successfully.");
+      });
+    } else {
+      // No matching documents found
+      console.log("No documents found with the specified email.");
+    }
+
+
+    } catch (error) {
+      console.error("Error fetching documents: ", error);
+    }
+  };
+
+  handleFetch();
+  }, []);
