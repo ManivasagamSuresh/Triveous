@@ -13,26 +13,7 @@ import { loginSuccess } from "../Redux/userSlice";
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const signIn = async () => {
-    try {
-      let result = await signInWithPopup(auth, provider);
-      
-      console.log(result.user.email);
-      const colRef = collection(db, "users");
-          const emailToFind = result.user.email;
-        const q = query(colRef, where ("email", "==", emailToFind));
-        const getSnapshotId = await getDocs(q);
-        if (!getSnapshotId.empty) {
-          getSnapshotId.forEach(async(doc) => {
-            // console.log(doc.data());
-           dispatch(loginSuccess(doc.data()))
-            navigate("/home") ; 
-          })     
-    } 
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   const formik = useFormik({
     initialValues:{
@@ -108,7 +89,7 @@ const handleSignin = ()=>{
           <button type="submit" className="bg-gray-600 text-white border-none p-2 rounded-lg">Sign Up</button>
           </form>
           <div className="textColor my-2" >Already have a account. <span onClick={()=>{handleSignin()}} className="cursor-pointer underline"> Sign In</span></div>
-        <button onClick={signIn} className="flex items-center justify-center gap-3 p-2 border border-solid border-gray-900 rounded-lg cursor-pointer">Sign in with Google <FcGoogle/></button>
+       
       </div>
     </div>
   );
