@@ -75,7 +75,7 @@ const handleAddWishlist = async()=>{
       <div><span className='font-semibold'>Author : </span>{currentArticle.author}</div>
     <div><span className='font-semibold'>published at: </span>{currentArticle.publishedAt}</div>
     </div>
-    <img src={currentArticle.urlToImage} alt="Image not available" className='w-11/12 h-44 md:h-80 '/>
+    <img src={currentArticle.urlToImage} alt="Image not available" className='w-11/12 h-44 md:h-80 md:w-2/3'/>
     <p className='h-fit w-11/12'>{currentArticle.description }</p>
     <button className='border border-solid border-white w-3/4 md:w-2/4 p-2 rounded cursor-pointer flex items-center justify-center gap-2' onClick={handleAddWishlist}> {wished?<><span>Added to wishlist</span> <AiFillHeart/> </>:<><span>Add to wishlist</span> <AiOutlineHeart/> </>}</button>
     <a href={currentArticle.url} target='_Blank' className='flex items-center justify-center text-lg font-bold gap-2 text-red-500'>Full Article  <AiOutlineArrowRight/> </a>

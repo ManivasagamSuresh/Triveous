@@ -12,7 +12,7 @@ function HomeCard({toggle,data}) {
     navigate(`/viewnews`)
   }
   return (
-    <div className={`w-11/12 h-80 overflow-hidden  ${toggle?"md:w-1/4 md:h-11/12":"md:w-5/12"} p-4 h-fit border border-solid mx-2 my-5 cursor-pointer flex flex-col `} onClick={handleNavtoview}> 
+    <div className={`w-11/12 h-80 overflow-hidden  ${toggle?"md:w-1/4 md:h-80 overflow-hidden":"md:w-5/12"} p-4 h-fit border border-solid mx-2 my-5 cursor-pointer flex flex-col `} onClick={handleNavtoview}> 
       <img className={`h-48  w-full object-cover`} src={data.urlToImage} alt="" />
       <div className={` font-bold  ${toggle?" text-sm":""}`}>{data.title}</div>
       {/* <div className={`text-sm ${toggle?" text-xs":""}`}>{data.description}</div> */}

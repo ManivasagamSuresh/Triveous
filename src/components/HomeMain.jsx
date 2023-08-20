@@ -20,11 +20,19 @@ function HomeMain() {
     const fetchdata = async()=>{
       try {
         
+
+        let cachedArticles = JSON.parse(localStorage.getItem('cachedArticles')) || [];
+        console.log(cachedArticles)
+
+        if (cachedArticles.length === 0) {
       // const data = await axios.get("https://newsapi.org/v2/everything?q=bitcoin&apiKey=9b31dc7f3c8547609aabff85e02ddb69");
       const data = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=9b31dc7f3c8547609aabff85e02ddb69");
-      
-      console.log(data.data.articles);
-      setArticles(data.data.articles)
+      cachedArticles = data.data.articles;
+
+          localStorage.setItem('cachedArticles', JSON.stringify(cachedArticles));
+        }
+      console.log(cachedArticles);
+      setArticles(cachedArticles)
         
       } catch (error) {
         console.log(error);
