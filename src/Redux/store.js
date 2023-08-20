@@ -15,7 +15,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 
-// import rootReducer from './reducers'
+
 
 const persistConfig = {
   key: 'root',
@@ -40,9 +40,3 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-// export const store = configureStore({
-//   reducer: {
-//     user: userReducer,
-//     article: articleReducer
-//   },
-// })

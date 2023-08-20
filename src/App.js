@@ -14,12 +14,7 @@ import Wishlist from './components/Wishlist';
 
 
 function App() {
-  const [data, setData] = useState([]);
-  const [documents, setDocuments] = useState([]);
-  
-  useEffect(()=>{
-console.log(documents);
-  },[documents])
+ 
   return (
     <div className="App">
       <BrowserRouter>
